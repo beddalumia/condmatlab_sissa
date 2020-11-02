@@ -1,4 +1,4 @@
-**HFHubbardLab** is a theoretically inclined training on static mean-field (*aka* Hartree Fock) treatment of Hubbard models. Nevertheless some interesting numerical aspects arise as stability of the self-consistency loop is concerned (mainly around first-order critical lines, where the loop may converge on metastable solutions). The correspondent preparatory course has been given by prof. Massimo Capone at SISSA.
+**HFHubbardLab** is a theoretically inclined training on static mean-field (*aka* Hartree Fock) treatment of Hubbard models. Nevertheless some interesting numerical aspects arise as the stability of the self-consistency loop is concerned (mainly around first-order critical lines, where the loop may converge on metastable solutions). The correspondent preparatory course has been given by prof. Massimo Capone at SISSA.
 
 --------------
 
