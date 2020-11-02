@@ -5,7 +5,7 @@ Almost everything is coauthored, so no license is provided.
 ------------------------------------------------------------
 Brief description of the contenent:
 
-- **HFHubbardLab** is a theoretically inclined training on static mean-field (*aka* Hartree Fock) treatment of Hubbard models. Nevertheless some interesting numerical aspects arise as stability of the self-consistency loop is concerned (mainly around first-order critical lines, where the loop may converge on metastable solutions). The correspondent preparatory course has been given by prof. Massimo Capone at SISSA.
+- **HFHubbardLab** is a theoretically inclined training on static mean-field (*aka* Hartree Fock) treatment of Hubbard models. Nevertheless some interesting numerical aspects arise as the stability of the self-consistency loop is concerned (mainly around first-order critical lines, where the loop may converge on metastable solutions). The correspondent preparatory course has been given by prof. Massimo Capone at SISSA.
 
 - **HeisenbergED** is an exact diagonalization implementation for the spin-1/2 XXX model, focusing on Sz- and momentum- sectors selection as a physics informed routine for the block-reduction of the eigenproblem. Due to prohibitive scaling of the many-body Hilbert space, special attention has been devoted to memory management and fast build of matrices, following closely the standard reference by Sandvik ([arXiv:1101.3281](https://arxiv.org/abs/1101.3281)). Further statistical analysis, based on *Phys. Rev. B 75, 155111 (2007)*, has been carried out on the ED results. Correspondent preparatory lectures have been given by prof. Mario Collura at SISSA.
 
