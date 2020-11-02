@@ -1,4 +1,4 @@
-**SolidStateLab** consists of three distinct projects, tackled within the infamous *Solid-State Problems* course given by prof. Stefano de Gironcoli at SISSA. Main focus is electronic structure theory, ranging from more-or-less-realistic tight binding calculations on 2D materials to berry-phase-related properties of minimalistic topological models. The final problem set on lattice dynamics shifts towards a more quantitative point of view, focusing on accurate reproduction of experimental literature.
+**SolidStateLab** consists of three distinct projects, tackled within the infamous *Solid-State Problems* course given by prof. Stefano de Gironcoli at SISSA. Main focus is electronic structure theory, ranging from more-or-less-realistic tight binding calculations on 2D materials to berry-phase-related properties of minimalistic topological models. The final problem set on lattice dynamics shifts towards a more quantitative approach, focusing on accurate reproduction of experimental literature.
 
 -------------------
 
