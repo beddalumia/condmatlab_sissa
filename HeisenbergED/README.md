@@ -5,4 +5,4 @@
 Material is partially coauthored with [Francesca Paoletti](mailto:francesca.paoletti@sissa.it), quoted here and there as *fp*.
 
 More specifically: She coded in f90. Here is reported only the data analysis, carried in a jupyter-notebook (+ some f90 code snippets, therein commented).
-All the debugging has been carried out together, in a "cross-checked" fashion. Nevertheless the underlying logical structure of some subroutine is inherently distinct, due to authors' different taste. 
+All the debugging has been carried out together, in a "cross-checked" fashion. Nevertheless the underlying logical structure of some subroutines is inherently distinct, due to authors' different taste. 
