@@ -5,7 +5,7 @@ Almost everything is coauthored, so no license is provided.
 ------------------------------------------------------------
 Brief description of the contenent:
 
-- *SolidStateLab* consists of three distinct projects, tackled within the *Solid-State Problems* course given by prof. Stefano de Gironcoli at SISSA. Main focus is electronic structure theory, ranging from more-or-less-realistic tight binding calculations on 2D materials to berry-phase-related properties of minimalistic topological models. The final problem set on lattice dynamics shifts towards a more quantitative point of view, focusing on accurate reproduction of experimental literature.
+- *SolidStateLab* consists of three distinct projects, tackled within the infamous *Solid-State Problems* course given by prof. Stefano de Gironcoli at SISSA. Main focus is electronic structure theory, ranging from more-or-less-realistic tight binding calculations on 2D materials to berry-phase-related properties of minimalistic topological models. The final problem set on lattice dynamics shifts towards a more quantitative point of view, focusing on accurate reproduction of experimental literature.
 
 - *HFHubbardLab* is a theoretically inclined training on static mean-field (*aka* Hartree Fock) treatment of Hubbard models. Nevertheless some interesting numerical aspects arise as stability of the self-consistency loop is concerned (mainly around first-order critical lines, where the loop may converge on metastable solutions). The correspondent preparatory course has been given by prof. Massimo Capone at SISSA.
 
@@ -13,5 +13,5 @@ Brief description of the contenent:
 
 Side note:
 
-- *dMFTlab* could have been part of this repository, for it has started as a "snooping around" stage within the Advanced Many-Body course given by Massimo Capone. But I decided to host it [elsewhere](https://github.com/Bellomia/dMFTlab) as an active and growing playground to give research ideas a quick and inexpensive test.
+- [*dMFTlab*](https://github.com/Bellomia/dMFTlab) could have been part of this repository, for it has started as a "snooping around" stage within the Advanced Many-Body course given by Massimo Capone. But I decided to host it elsewhere as an active and growing playground to give research ideas a quick and inexpensive test.
 
