@@ -1,0 +1,256 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>ZeroMz2DBlochH</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-05-04"><meta name="DC.source" content="ZeroMz2DBlochH.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Zero-Sz Sector Selection %%</a></li><li><a href="#3">PBC Allowed Momentum Values %%</a></li><li><a href="#5">List of Momentum States %%</a></li><li><a href="#6">Hamiltonian %%</a></li></ul></div><pre class="codeinput">Nx = 4;
+Ny = 4;
+N = Nx*Ny;
+nbit = 32;
+numtype = sprintf(<span class="string">'int%d'</span>,nbit);
+</pre><h2 id="2">Zero-Sz Sector Selection %%</h2><pre class="codeinput">M0 = factorial(N)/(factorial(N/2))^2; <span class="comment">% Apriori Matrix dimension</span>
+basis = -1*ones(1,M0);  <span class="comment">% Basis-set preallocation</span>
+a = 0;                  <span class="comment">% State counter reset</span>
+<span class="keyword">for</span> s = 0:(2^N-1)       <span class="comment">% Span of complete Hilbert Space</span>
+   m = 0;               <span class="comment">% Magnetization reset</span>
+   <span class="keyword">for</span> i = 1:N          <span class="comment">% Span of lattice sites</span>
+       spin = bitget(s,i,numtype)-1/2; <span class="comment">% spin = \pm 1/2</span>
+       m = m + spin;    <span class="comment">% Magnetization increment</span>
+   <span class="keyword">end</span>
+       <span class="keyword">if</span> m == 0        <span class="comment">% Zero-Magnetization selection rule</span>
+          a = a + 1;    <span class="comment">% State counter increment</span>
+          basis(a) = s; <span class="comment">% State saved in basis-set</span>
+       <span class="keyword">end</span>
+<span class="keyword">end</span>
+M = a;                  <span class="comment">% Aposteriori Matrix dimension</span>
+<span class="keyword">if</span> M ~= M0
+    fprintf(<span class="string">'THERE IS SOME ERROR on Sz=0 selection\n'</span>)
+<span class="keyword">end</span>
+Levels = [];
+</pre><h2 id="3">PBC Allowed Momentum Values %%</h2><pre class="codeinput">E = cell(Nx,Ny); basisDIM = 0;
+<span class="keyword">for</span> kx = 0:Nx-1  <span class="comment">% Defined modulo 2pi/Nx</span>
+    <span class="keyword">for</span> ky = 0:Ny-1  <span class="comment">% Defined modulo 2pi/Ny</span>
+</pre><pre class="codeinput">    <span class="comment">% (Momentum Loop: each (kx,ky)-sector is decoupled from all the others)</span>
+</pre><h2 id="5">List of Momentum States %%</h2><pre class="codeinput">        M_k = countSzK2Dstates(basis,kx,ky,Nx,Ny,numtype); basisDIM = basisDIM + M_k;
+        fprintf(<span class="string">'%d %d %d\n'</span>, kx,ky,M_k);
+        s_k = -ones(1,M_k);   <span class="comment">% Basis-set list preallocation</span>
+        N_k = -ones(1,M_k);   <span class="comment">% Normalization list preallocation</span>
+        a = 0;                <span class="comment">% State counter reset</span>
+        <span class="keyword">for</span> a_Sz = 1:M
+            Ns = check2Dstate(basis(a_Sz),kx,ky,Nx,Ny,numtype);
+            <span class="keyword">if</span> Ns &gt; 0
+                a = a + 1;
+                s_k(a) = basis(a_Sz);
+                N_k(a) = Ns;
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+        <span class="keyword">if</span> a ~= M_k
+            fprintf(<span class="string">'THERE IS SOME ERROR on k=%d selection\n'</span>,k)
+        <span class="keyword">end</span>
+</pre><h2 id="6">Hamiltonian %%</h2><pre class="codeinput">        H_k = zeros(M_k,M_k);
+        <span class="keyword">for</span> a = 1:M_k
+            <span class="keyword">for</span> x = 0:Nx-1
+                <span class="keyword">for</span> y = 0:Ny-1
+                    <span class="comment">% Particle we are focusing on:</span>
+                    i = x+y*Nx;
+                    si = bitget(s_k(a),i+1,numtype);
+                    <span class="comment">% Horizontal N.N. of i-th particle:</span>
+                    jRh = mod(x+1,Nx) + y*Nx;
+                    sjRh = bitget(s_k(a),jRh+1,numtype);
+                    <span class="keyword">if</span> si == sjRh
+                        H_k(a,a) = H_k(a,a) + 1/4;
+                    <span class="keyword">else</span>
+                        H_k(a,a) = H_k(a,a) - 1/4;
+                        s_fliped = bitxor(s_k(a),2^i+2^jRh,numtype);            <span class="comment">% spin-flip</span>
+                        [r,Lx,Ly] = representative2D(s_fliped,Nx,Ny,numtype);   <span class="comment">% Repr. of spin-flip</span>
+                        b = find(s_k==r);                                       <span class="comment">% Position of spin-flip</span>
+                        <span class="keyword">if</span> isempty(b) == 0
+                            fx = 2*pi/Nx*kx*Lx; fy = 2*pi/Ny*ky*Ly;
+                            H_k(a,b) = H_k(a,b) + 1/2*sqrt(N_k(a)./N_k(b))*exp(1i*(fx+fy));
+                        <span class="keyword">end</span>
+                    <span class="keyword">end</span>
+                    <span class="comment">% Vertical N.N. of i-th particle:</span>
+                    jUp = x + mod(y+1,Ny)*Nx;
+                    sjUp = bitget(s_k(a),jUp+1,numtype);
+                    <span class="keyword">if</span> si == sjUp
+                        H_k(a,a) = H_k(a,a) + 1/4;
+                    <span class="keyword">else</span>
+                        H_k(a,a) = H_k(a,a) - 1/4;
+                        s_fliped = bitxor(s_k(a),2^i+2^jUp,numtype);            <span class="comment">% spin-flip</span>
+                        [r,Lx,Ly] = representative2D(s_fliped,Nx,Ny,numtype);   <span class="comment">% Repr. of spin-flip</span>
+                        b = find(s_k==r);                                       <span class="comment">% Position of spin-flip</span>
+                        <span class="keyword">if</span> isempty(b) == 0
+                            fx = 2*pi/Nx*kx*Lx; fy = 2*pi/Ny*ky*Ly;
+                            H_k(a,b) = H_k(a,b) + 1/2*sqrt(N_k(a)./N_k(b))*exp(1i*(fx+fy));
+                        <span class="keyword">end</span>
+                    <span class="keyword">end</span>
+                <span class="keyword">end</span>
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+        E{kx+1,ky+1} = eig(H_k);
+        Levels = [Levels; sort(real(E{kx+1,ky+1}))/N];
+</pre><pre class="codeinput">    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+Nx = 4;
+Ny = 4;
+N = Nx*Ny;
+nbit = 32;
+numtype = sprintf('int%d',nbit);
+
+%% Zero-Sz Sector Selection %%
+M0 = factorial(N)/(factorial(N/2))^2; % Apriori Matrix dimension
+basis = -1*ones(1,M0);  % Basis-set preallocation
+a = 0;                  % State counter reset
+for s = 0:(2^N-1)       % Span of complete Hilbert Space
+   m = 0;               % Magnetization reset
+   for i = 1:N          % Span of lattice sites
+       spin = bitget(s,i,numtype)-1/2; % spin = \pm 1/2
+       m = m + spin;    % Magnetization increment
+   end
+       if m == 0        % Zero-Magnetization selection rule
+          a = a + 1;    % State counter increment
+          basis(a) = s; % State saved in basis-set
+       end
+end
+M = a;                  % Aposteriori Matrix dimension
+if M ~= M0
+    fprintf('THERE IS SOME ERROR on Sz=0 selection\n')
+end
+Levels = [];
+
+%% PBC Allowed Momentum Values %%
+E = cell(Nx,Ny); basisDIM = 0;
+for kx = 0:Nx-1  % Defined modulo 2pi/Nx
+    for ky = 0:Ny-1  % Defined modulo 2pi/Ny
+    % (Momentum Loop: each (kx,ky)-sector is decoupled from all the others)
+
+        %% List of Momentum States %%
+        M_k = countSzK2Dstates(basis,kx,ky,Nx,Ny,numtype); basisDIM = basisDIM + M_k;
+        fprintf('%d %d %d\n', kx,ky,M_k);
+        s_k = -ones(1,M_k);   % Basis-set list preallocation
+        N_k = -ones(1,M_k);   % Normalization list preallocation
+        a = 0;                % State counter reset
+        for a_Sz = 1:M
+            Ns = check2Dstate(basis(a_Sz),kx,ky,Nx,Ny,numtype);
+            if Ns > 0 
+                a = a + 1;
+                s_k(a) = basis(a_Sz);
+                N_k(a) = Ns;
+            end
+        end
+        if a ~= M_k
+            fprintf('THERE IS SOME ERROR on k=%d selection\n',k)
+        end
+
+        %% Hamiltonian %%
+        H_k = zeros(M_k,M_k);
+        for a = 1:M_k
+            for x = 0:Nx-1
+                for y = 0:Ny-1
+                    % Particle we are focusing on:
+                    i = x+y*Nx;
+                    si = bitget(s_k(a),i+1,numtype);
+                    % Horizontal N.N. of i-th particle:
+                    jRh = mod(x+1,Nx) + y*Nx;
+                    sjRh = bitget(s_k(a),jRh+1,numtype);
+                    if si == sjRh
+                        H_k(a,a) = H_k(a,a) + 1/4;
+                    else
+                        H_k(a,a) = H_k(a,a) - 1/4;
+                        s_fliped = bitxor(s_k(a),2^i+2^jRh,numtype);            % spin-flip
+                        [r,Lx,Ly] = representative2D(s_fliped,Nx,Ny,numtype);   % Repr. of spin-flip
+                        b = find(s_k==r);                                       % Position of spin-flip
+                        if isempty(b) == 0
+                            fx = 2*pi/Nx*kx*Lx; fy = 2*pi/Ny*ky*Ly;
+                            H_k(a,b) = H_k(a,b) + 1/2*sqrt(N_k(a)./N_k(b))*exp(1i*(fx+fy));
+                        end
+                    end
+                    % Vertical N.N. of i-th particle:
+                    jUp = x + mod(y+1,Ny)*Nx;
+                    sjUp = bitget(s_k(a),jUp+1,numtype);
+                    if si == sjUp
+                        H_k(a,a) = H_k(a,a) + 1/4;
+                    else
+                        H_k(a,a) = H_k(a,a) - 1/4;
+                        s_fliped = bitxor(s_k(a),2^i+2^jUp,numtype);            % spin-flip
+                        [r,Lx,Ly] = representative2D(s_fliped,Nx,Ny,numtype);   % Repr. of spin-flip
+                        b = find(s_k==r);                                       % Position of spin-flip
+                        if isempty(b) == 0
+                            fx = 2*pi/Nx*kx*Lx; fy = 2*pi/Ny*ky*Ly;
+                            H_k(a,b) = H_k(a,b) + 1/2*sqrt(N_k(a)./N_k(b))*exp(1i*(fx+fy));
+                        end
+                    end
+                end
+            end
+        end
+        E{kx+1,ky+1} = eig(H_k);
+        Levels = [Levels; sort(real(E{kx+1,ky+1}))/N];
+    end
+end
+##### SOURCE END #####
+--></body></html>
