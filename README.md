@@ -13,5 +13,5 @@ Brief description of the contenent:
 
 Side note:
 
-- [**dMFTlab**](https://github.com/Bellomia/dMFTlab) could have been part of this repository, for it has started as a "snooping around" stage within the Advanced Many-Body course given by Massimo Capone. But I decided to host it elsewhere as an active and growing playground to give research ideas a quick and inexpensive test.
+- [**dMFTlab**](https://github.com/Bellomia/dMFTlab) could have been part of this repository, for it has started as a "snooping around stage" within the Advanced Many-Body course given by Massimo Capone. But I decided to host it elsewhere as an active and growing playground to give research ideas a quick and inexpensive test.
 
