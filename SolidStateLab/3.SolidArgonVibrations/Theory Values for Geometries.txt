@@ -1,0 +1,25 @@
+>> TheoryValues [Phys. Rev. B 73, 064112 (2006)]
+
+***************************************
+For scl lattice:
+Cohesion Energy is: 566.534765
+Equilibrium Lattice Parameter is: 3.572597
+***************************************
+
+***************************************
+For bcc lattice:
+Cohesion Energy is: 820.022410
+Equilibrium Lattice Parameter is: 4.130489
+***************************************
+
+***************************************
+For fcc lattice:
+Cohesion Energy is: 857.145426
+Equilibrium Lattice Parameter is: 5.161733
+***************************************
+
+***************************************
+For hcp lattice:
+Cohesion Energy is: 857.231992
+Equilibrium Lattice Parameter is: 3.649876
+***************************************
