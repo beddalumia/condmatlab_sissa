@@ -2,7 +2,7 @@
 
 -----------------------
 
-Material is partially coauthored with Francesca Paoletti <francesca.paoletti@sissa.it>, quoted here and there as *fp*.
+Material is partially coauthored with [Francesca Paoletti](<francesca.paoletti@sissa.it>), quoted here and there as *fp*.
 
-More specifically: *She coded in f90. Here is reported only the data analysis, carried in python (+ some f90 commented code snippets, therein).
-All the debugging has been carried out together, in a "cross-checked" fashion. Nevertheless the underlying logical structure of some subroutine is inherently distinct, due to authors' different taste.* 
+More specifically: She coded in f90. Here is reported only the data analysis, carried in python (+ some f90 commented code snippets, therein).
+All the debugging has been carried out together, in a "cross-checked" fashion. Nevertheless the underlying logical structure of some subroutine is inherently distinct, due to authors' different taste. 
