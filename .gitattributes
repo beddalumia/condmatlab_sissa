@@ -4,3 +4,5 @@
 *.m linguist-language=MATLAB
 # Exclude jupyter-notebooks from linguist statistics
 *.ipynb linguist-vendored=true
+# Exclude wolfram-notebooks from linguist statistics
+*.nb linguist-vendored=true
